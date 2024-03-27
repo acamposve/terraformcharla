@@ -1,4 +1,15 @@
 terraform {
+
+backend "remote" {
+#         # The name of your Terraform Cloud organization.
+         organization = "pvirtual"
+#
+#         # The name of the Terraform Cloud workspace to store Terraform state files in.
+         workspaces {
+           name = "terraformcharla"
+         }
+}
+
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
