@@ -1,28 +1,25 @@
 terraform {
+  backend "remote" {
+    organization = "pvirtual"
 
-backend "remote" {
-#         # The name of your Terraform Cloud organization.
-         organization = "pvirtual"
-#
-#         # The name of the Terraform Cloud workspace to store Terraform state files in.
-         workspaces {
-           name = "terraformcharla"
-         }
-}
 
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "~>2.0"
+
+    workspaces {
+      name = "terraformcharla"
     }
   }
-}
+  
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0.1"
+    }
 
-provider "azurerm" {
-  features {}
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.33.0"
+    }
 
-  subscription_id   = "<azure_subscription_id>"
-  tenant_id         = "<azure_subscription_tenant_id>"
-  client_id         = "<service_principal_appid>"
-  client_secret     = "<service_principal_password>"
+
+  }
 }
